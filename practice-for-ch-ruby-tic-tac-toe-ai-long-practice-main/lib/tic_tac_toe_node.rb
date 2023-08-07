@@ -9,6 +9,14 @@ class TicTacToeNode
   end
 
   def losing_node?(evaluator)
+    return true if (!@board.winner || @board.winner != evaluator ) && @board.over?
+
+    if evaluator == @board.next_mark
+      self.children.all? { |child| child.losing_node?(@board.next_mark) }
+    else
+      self.children.any? { |child| child.losing_node?(@board.next_mark) }
+    end
+    
   end
 
   def winning_node?(evaluator)
@@ -31,4 +39,5 @@ class TicTacToeNode
     end
     boards
   end
+
 end
