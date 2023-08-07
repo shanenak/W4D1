@@ -1,14 +1,22 @@
 class PolyTreeNode
-    attr_reader :parent, :children, :value
-
-    def initialize(position, parent=nil)
-        @parent = parent
-        @position = position # instance
+    def initialize(value)
+        @parent = nil # instance
         @children = [] # array of instances
-        @board = Array.new(8) { Array.new(8) }
-        # @root_node = root_node
+        @value = value # string
     end
 
+    def parent
+        @parent
+    end
+
+    def children
+        @children
+    end
+
+    def value
+        @value
+    end
+    
     def parent=(new_parent) # nil or an instance
         @parent.children.delete(self) if @parent != nil && @parent.children.include?(self)  
         @parent = new_parent
@@ -22,24 +30,6 @@ class PolyTreeNode
     def add_child(child)
         child.parent = self
         # @children << child
-    end
-
-    def [](pos)
-        x, y = pos
-        @board[x][y]
-    end
-
-    # def []=(position)
-    #     x, y = positon
-    # end
-
-    def is_valid?(pos)
-        x, y = pos
-        return false if (x > 8 || y > 8) && (x < 0 || y < 0)
-        return true
-     end
-    def add_possible_children
-        x, y = @position
     end
 
     def remove_child(child)

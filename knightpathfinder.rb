@@ -1,7 +1,12 @@
+require_relative 'polytreenode'
 class KnightPathFinder
     def initialize(pos)
-        @board = Array.new(8) {Array.new(8)}
         @pos = pos
-        @node = PolyTreeNode.new(pos)
+        @root_node = PolyTreeNode.new(pos)
+        # @node = PolyTreeNode.new(pos)
+    end
+
+    def build_move_tree
+        # @root_node.children << polytreenode.new()
     end
 end
